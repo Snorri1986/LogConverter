@@ -1,6 +1,3 @@
-import unittest
-
-
 # Entry point
 def welcome():
     print("Welcome to LogConverter app")
