@@ -13,5 +13,6 @@ def init_path_variables():
     global loan_task_log_path
     deposit_task_log_path = config_in_dict['Locations']['deposit']
     loan_task_log_path = config_in_dict['Locations']['loans']
+    config_json_f.close()
     print("For deposit_task_log_path set path to log file " + deposit_task_log_path)
     print("For loan_task_log_path set path to log file " + loan_task_log_path)
