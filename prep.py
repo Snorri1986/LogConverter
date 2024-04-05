@@ -1,5 +1,7 @@
 # Function which will read config file and initialize file_path variables
 import json
+import glob
+
 
 deposit_task_log_path = None
 loan_task_log_path = None
@@ -19,3 +21,15 @@ def init_path_variables():
     config_json_f.close()
     print("For deposit_task_log_path set path to log file " + deposit_task_log_path)
     print("For loan_task_log_path set path to log file " + loan_task_log_path)
+    get_latest_log_file_deposit(deposit_task_log_path)
+
+
+def get_latest_log_file_deposit(deposit_task_log_path):
+    deposit_log_files_list = glob.glob(deposit_task_log_path + "\\" + "V21Start-CvEod*.log")
+    deposit_log_files_list_new = [w.replace("\\\\", "\\") for w in deposit_log_files_list]
+    #TODO: get file only with latest creation date
+
+
+def get_latest_log_file_loan(loan_task_log_path):
+    var = None
+    # TODO: finish the fuction
