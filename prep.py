@@ -5,6 +5,9 @@ deposit_task_log_path = None
 loan_task_log_path = None
 config_file_name = "config.json"
 
+deposit_latest_file = None
+loan_latest_file = None
+
 
 def init_path_variables():
     config_json_f = open('config.json')
