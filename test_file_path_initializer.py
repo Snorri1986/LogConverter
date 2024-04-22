@@ -7,6 +7,8 @@ class MyTestCase(unittest.TestCase):
         prep.init_path_variables()
         self.assertIsNotNone(prep.deposit_task_log_path)
         self.assertIsNotNone(prep.loan_task_log_path)
+        self.assertIsNotNone(prep.deposit_latest_file)
+        self.assertIsNotNone(prep.loan_latest_file)
 
 
 if __name__ == '__main__':
