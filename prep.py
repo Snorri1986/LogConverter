@@ -46,15 +46,15 @@ def get_latest_log_file_deposit(deposit_task_log_path):
 
 def get_latest_log_file_loan(loan_task_log_path):
 
-    most_recent_file = None
-    most_recent_time = 0
+    loan_most_recent_file = None
+    loan_most_recent_time = 0
 
     for entry in os.scandir(loan_task_log_path):
         if entry.is_file():
             mod_time = entry.stat().st_mtime_ns
-            if mod_time > most_recent_time:
-                most_recent_file = entry.name
-                most_recent_time = mod_time
+            if mod_time > loan_most_recent_time:
+                loan_most_recent_file = entry.name
+                loan_most_recent_time = mod_time
 
-    print("The latest file in the folder " + loan_task_log_path + " is " + most_recent_file)
-    return most_recent_file
+    print("The latest file in the folder " + loan_task_log_path + " is " + loan_most_recent_file)
+    return loan_most_recent_file
