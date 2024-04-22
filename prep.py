@@ -1,6 +1,7 @@
 # Function which will read config file and initialize file_path variables
 import json
 import glob
+import os
 
 
 deposit_task_log_path = None
@@ -21,13 +22,26 @@ def init_path_variables():
     config_json_f.close()
     print("For deposit_task_log_path set path to log file " + deposit_task_log_path)
     print("For loan_task_log_path set path to log file " + loan_task_log_path)
-    get_latest_log_file_deposit(deposit_task_log_path)
+    global deposit_latest_file
+    deposit_latest_file = get_latest_log_file_deposit(deposit_task_log_path)
+    print("The latest file from deposit to handle is " + deposit_latest_file)
 
 
 def get_latest_log_file_deposit(deposit_task_log_path):
-    deposit_log_files_list = glob.glob(deposit_task_log_path + "\\" + "V21Start-CvEod*.log")
-    deposit_log_files_list_new = [w.replace("\\\\", "\\") for w in deposit_log_files_list]
-    #TODO: get file only with latest creation date
+
+    most_recent_file = None
+    most_recent_time = 0
+
+    for entry in os.scandir(deposit_task_log_path):
+        if entry.is_file():
+            mod_time = entry.stat().st_mtime_ns
+            if mod_time > most_recent_time:
+                most_recent_file = entry.name
+                most_recent_time = mod_time
+
+    print("The latest file in the folder " + deposit_task_log_path + " is " + most_recent_file)
+    return most_recent_file
+
 
 
 def get_latest_log_file_loan(loan_task_log_path):
