@@ -1,8 +1,6 @@
 # Function which will read config file and initialize file_path variables
 import json
-import glob
 import os
-
 
 deposit_task_log_path = None
 loan_task_log_path = None
@@ -31,7 +29,6 @@ def init_path_variables():
 
 
 def get_latest_log_file_deposit(deposit_task_log_path):
-
     deposit_most_recent_file = None
     deposit_most_recent_time = 0
 
@@ -46,9 +43,7 @@ def get_latest_log_file_deposit(deposit_task_log_path):
     return deposit_most_recent_file
 
 
-
 def get_latest_log_file_loan(loan_task_log_path):
-
     loan_most_recent_file = None
     loan_most_recent_time = 0
 
