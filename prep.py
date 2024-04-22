@@ -24,7 +24,10 @@ def init_path_variables():
     print("For loan_task_log_path set path to log file " + loan_task_log_path)
     global deposit_latest_file
     deposit_latest_file = get_latest_log_file_deposit(deposit_task_log_path)
-    print("The latest file from deposit to handle is " + deposit_latest_file)
+    print("The latest file from deposit folder log to handle is " + deposit_latest_file)
+    global loan_latest_file
+    loan_latest_file = get_latest_log_file_loan(loan_task_log_path)
+    print("The latest file from loans folder log to handle is " + loan_latest_file)
 
 
 def get_latest_log_file_deposit(deposit_task_log_path):
