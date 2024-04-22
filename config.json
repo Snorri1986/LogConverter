@@ -1,6 +1,6 @@
 {
   "Locations": {
-    "deposit": "D:\\Applications\\LOGS",
-    "loans": "D:\\Applications\\LOGS"
+    "deposit": "D:\\Applications\\LOGS\\deposits",
+    "loans": "D:\\Applications\\LOGS\\loans"
   }
 }
