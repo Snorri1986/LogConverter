@@ -29,21 +29,32 @@ def init_path_variables():
 
 def get_latest_log_file_deposit(deposit_task_log_path):
 
+    deposit_most_recent_file = None
+    deposit_most_recent_time = 0
+
+    for entry in os.scandir(deposit_task_log_path):
+        if entry.is_file():
+            mod_time = entry.stat().st_mtime_ns
+            if mod_time > deposit_most_recent_time:
+                deposit_most_recent_file = entry.name
+                deposit_most_recent_time = mod_time
+
+    print("The latest file in the folder " + deposit_task_log_path + " is " + deposit_most_recent_file)
+    return deposit_most_recent_file
+
+
+
+def get_latest_log_file_loan(loan_task_log_path):
+
     most_recent_file = None
     most_recent_time = 0
 
-    for entry in os.scandir(deposit_task_log_path):
+    for entry in os.scandir(loan_task_log_path):
         if entry.is_file():
             mod_time = entry.stat().st_mtime_ns
             if mod_time > most_recent_time:
                 most_recent_file = entry.name
                 most_recent_time = mod_time
 
-    print("The latest file in the folder " + deposit_task_log_path + " is " + most_recent_file)
+    print("The latest file in the folder " + loan_task_log_path + " is " + most_recent_file)
     return most_recent_file
-
-
-
-def get_latest_log_file_loan(loan_task_log_path):
-    var = None
-    # TODO: finish the fuction
