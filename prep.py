@@ -1,6 +1,7 @@
 # Function which will read config file and initialize file_path variables
 import json
 import os
+import reading
 
 deposit_task_log_path = None
 loan_task_log_path = None
@@ -15,18 +16,22 @@ def init_path_variables():
     config_in_dict = json.load(config_json_f)
     global deposit_task_log_path
     global loan_task_log_path
+    # read config and init path to log files
     deposit_task_log_path = config_in_dict['Locations']['deposit']
     loan_task_log_path = config_in_dict['Locations']['loans']
     config_json_f.close()
     print("For deposit_task_log_path set path to log file " + deposit_task_log_path)
     print("For loan_task_log_path set path to log file " + loan_task_log_path)
+    # find latest file
     global deposit_latest_file
     deposit_latest_file = get_latest_log_file_deposit(deposit_task_log_path)
     print("The latest file from deposit folder log to handle is " + deposit_latest_file)
     global loan_latest_file
     loan_latest_file = get_latest_log_file_loan(loan_task_log_path)
     print("The latest file from loans folder log to handle is " + loan_latest_file)
-    #TODO add function to read files
+    #read log files
+    reading.read_deposit_log(deposit_latest_file,deposit_task_log_path)
+    reading.read_loans_log(loan_latest_file,loan_task_log_path)
 
 
 def get_latest_log_file_deposit(deposit_task_log_path):
