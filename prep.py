@@ -26,6 +26,7 @@ def init_path_variables():
     global loan_latest_file
     loan_latest_file = get_latest_log_file_loan(loan_task_log_path)
     print("The latest file from loans folder log to handle is " + loan_latest_file)
+    #TODO add function to read files
 
 
 def get_latest_log_file_deposit(deposit_task_log_path):
