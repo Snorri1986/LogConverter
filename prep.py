@@ -30,8 +30,8 @@ def init_path_variables():
     loan_latest_file = get_latest_log_file_loan(loan_task_log_path)
     print("The latest file from loans folder log to handle is " + loan_latest_file)
     #read log files
-    reading.read_deposit_log(deposit_latest_file,deposit_task_log_path)
-    reading.read_loans_log(loan_latest_file,loan_task_log_path)
+    reading.read_replace_deposit_log(deposit_latest_file,deposit_task_log_path)
+    #reading.read_loans_log(loan_latest_file,loan_task_log_path) # temporary commented
 
 
 def get_latest_log_file_deposit(deposit_task_log_path):
