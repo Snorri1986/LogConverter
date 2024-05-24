@@ -37,11 +37,15 @@ def read_replace_deposit_log(latest_deposit_file_name,path_to_directory):
         # Add the modified string to the list
         modified_strings_list.append(modified_string)
 
+    # replace in a file
+    #deposit_log_txt.close()
 
 
+
+    #deposit_log_txt.close() # close as a read
     #print(deposit_log_lines)
     #print(matches)
-    print(modified_strings_list)
+    #print(modified_strings_list)
 
     deposit_log_txt.close()
 
