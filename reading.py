@@ -1,9 +1,7 @@
 # file contains functions for reading logs from txt
-import time
 import re
 
-pattern = re.compile(r'\b\d+:\d+\b')
-replacement_value = time.time()
+pattern_to_find = r'\b(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d\b'
 
 def read_replace_deposit_log(latest_deposit_file_name,path_to_directory):
     deposit_log_lines = []
@@ -16,9 +14,19 @@ def read_replace_deposit_log(latest_deposit_file_name,path_to_directory):
         deposit_log_lines = [line.strip() for line in deposit_log_txt]
         count += 1
 
+    matches = []
+
+    for string in deposit_log_lines:
+        # Find all matches in the current string
+        found = re.findall(pattern_to_find, string)
+        # Add the matches to the list (flattening the result)
+        matches.extend(found)
+
+    #print(deposit_log_lines)
+    print(matches)
+
     deposit_log_txt.close()
-    updated_list = replace_colon_numbers(deposit_log_lines, replacement_value)
-    print(updated_list)
+
 
 def read_loans_log(latest_loans_file_name,path_to_directory):
     loans_log_lines = []
@@ -33,10 +41,4 @@ def read_loans_log(latest_loans_file_name,path_to_directory):
 
     loans_log_txt.close()
 
-def replace_colon_numbers(input_list, replacement):
-        updated_list = []
-        for item in input_list:
-            # Replace all occurrences of the pattern in the current item
-            updated_item = pattern.sub(replacement, str(item))
-            updated_list.append(updated_item)
-        return updated_list
+
